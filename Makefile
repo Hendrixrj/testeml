@@ -23,9 +23,3 @@ pep8: ## Check source-code for PEP8 compliance
 tests: clean pep8 ## Run pep8 and all tests with coverage
 	@echo "Running pep8 and all tests with coverage"
 	@py.test --cov-config .coveragerc --cov $(PROJECT_HOME) --cov-report term-missing
-
-run: check-env-vars clean ## Run a Vault development web server
-	@python $(PROJECT_HOME)/manage.py runserver 0.0.0.0:8000
-
-tests_ci: clean pep8 ## Run pep8 and all tests
-	@py.test

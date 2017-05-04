@@ -32,3 +32,8 @@ tabela2 |  -    | -
 =============================
 
 
+=============== EXECUÇÃO DOS TESTES =======================
+
+Estando no raiz do projeto basta executar:
+
+make tests

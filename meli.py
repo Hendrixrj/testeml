@@ -221,12 +221,5 @@ class Meli(object):
     def round_value(self, value):
         return "%.2f" % round(math.ceil(float(value)), 2)
 
-    '''
-        Metodo que calcula o custo de alfandega
-        Retorno : Taxa Alfandega aplicada.
-    '''
-    def define_customs_tax(subtotal, alfandega):
-        return subtotal * (alfandega / 100)
-
 if __name__ == '__main__':
     Meli(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])

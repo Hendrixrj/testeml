@@ -1,0 +1,13 @@
+Observações gerais sobre desenvolvimento.
+
+1 - Solução e desenvolvimento sempre exige refactor para excelência, é esse caso, dado o cenário definido e prazo, priorizei entendimento das regras de negócios e implementação
+da solução, inclusive muitos tratamentos que se fazem necessários não foram implementados.
+
+2 - O Arquivo INSTRUCTIONS possui o README original com a proposta do teste.
+
+3 - O README possui informações para montagem de ambiente e execução do sistema e testes.
+
+4 - Eu particularmente senti falta de informações mais detalhadas no glosário em cima da solução para tabela 2, que possui taxa de alfandega, limite e não possui taxa fixa como na tabela 1, para uma maior clareza dos calculos especificos da tabela 2.
+
+5 - Os testes por hora foram implementados apenas alguns como base inicial.
+
