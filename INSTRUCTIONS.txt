@@ -5,7 +5,7 @@ O teste do Meli é uma aplicação simples que não deve lhe tomar mais de um di
 para ser feito, os nossos candidatos costumam mandar os testes com menos de 200
 linhas de código. Nesse teste você deve fazer um programa que calcula o prazo e
 preço de frete de acordo com os detalhes definidos abaixo, é uma aplicação
-simples que está relacionada com o trabalho do Mercado Envios.
+simples que está relacionada com o trabalho do ME.
 
 Lembre-se que essa é a nossa principal forma de avaliação, então é esperado que
 você faça o código no melhor das suas competências, desenvolva com a mesma
