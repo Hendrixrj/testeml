@@ -43,7 +43,10 @@ class Meli(object):
         # Custo total com taxas e aplicado icms
         self.total = 0
 
+        # Realiza os calculos para tabela1
         self.calculate_taxs_table1()
+
+        # Realiza os calculos para tabela2
         self.calculate_taxs_table2()
 
     def calculate_taxs_table1(self):
@@ -70,7 +73,7 @@ class Meli(object):
         tax_fixed = float(self.row_route['fixa'])
 
         # Subtotal : taxa calculada de seguro + taxa fixa dada rota origem / destino.
-        self.subtotal =  float(final_insurance) + tax_fixed
+        self.subtotal = float(final_insurance) + tax_fixed
 
         # Subtotal : subtotal atual + (peso * custo do kg)
         self.subtotal = self.subtotal + (float(self.weight) * self.kg_price)
@@ -81,7 +84,9 @@ class Meli(object):
 
     def calculate_taxs_table2(self):
 
-    	self.open_route_csv('tabela2', 'rotas.csv')
+        self.subtotal = 0
+
+        self.open_route_csv('tabela2', 'rotas.csv')
 
         # Indice da tabela de rotas utilizado para recuperacao na tabela de preco por kg
         self.idx_kg_t2 = self.row_route_t2['kg']
@@ -93,7 +98,7 @@ class Meli(object):
             self.show_results('tabela2', '-', '-')
         else:
             self.open_kg_price_csv('tabela2', 'preco_por_kg.csv')
-        
+
             # Taxa de alfandega
             alfandega = self.row_route_t2['alfandega']
 
@@ -109,6 +114,9 @@ class Meli(object):
             # Valor do prazo dado origem / destino na tabela de rotas
             deadline = self.row_route_t2['prazo']
 
+            # Subtotal : subtotal + taxa calculada de seguro
+            self.subtotal = self.subtotal + float(final_insurance)
+
             # Subtotal : subtotal atual + (peso * custo do kg)
             self.subtotal = self.subtotal + (float(self.weight) * self.kg_price)
 
@@ -119,7 +127,6 @@ class Meli(object):
             self.total = round(self.apply_icms(self.subtotal), 2)
 
             self.show_results('tabela2', deadline, self.total)
-
 
     '''
         Metodo para abrir pasta/arquivo (tabela de rotas) para leitura.
@@ -151,7 +158,7 @@ class Meli(object):
                     if (table == 'tabela'):
                         self.row_route = row
                     else:
-                    	self.row_route_t2 = row
+                        self.row_route_t2 = row
 
     '''
         Metodo que realiza extracao de uma linha da tabela referenciada de preco_por_kg dado um indice de kg e valor de peso.
@@ -177,9 +184,9 @@ class Meli(object):
         Retorno : Tabela utilizada, valor do frete e prazo.
     '''
     def show_results(self, folder, total_value, deadline):
-    	print "============================="
-    	print "TABELA" + " | " + "PRAZO" + " | " +     "VALOR"
-        print folder + " | " + " " +  str(total_value) + "    | " +  str(deadline)
+        print "============================="
+        print "TABELA" + " | " + "PRAZO" + " | " + "VALOR"
+        print folder + " | " + " " + str(total_value) + "    | " + str(deadline)
 
         print "============================="
 
@@ -188,7 +195,7 @@ class Meli(object):
         Retorno : Taxa de seguro aplicado.
     '''
     def define_insurance(self, invoice_value, insurance):
-        return (float(invoice_value) * float(self.round_value(insurance))) / 100
+        return (float(invoice_value) * (float(self.round_value(insurance))) / 100)
 
     '''
         Metodo que calcula o icms.
@@ -202,10 +209,9 @@ class Meli(object):
         Retorno : Taxa Alfandega aplicada.
     '''
     def apply_alfandega(self, subtotal, alfandega):
-        print subtotal
-    	if (alfandega == '0'):
-    	    return float(subtotal / 100)
-    	else:
+        if (alfandega == '0'):
+            return subtotal
+        else:
             return float(subtotal / int(alfandega) / 100)
 
     '''
