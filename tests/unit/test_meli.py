@@ -35,3 +35,16 @@ class TestMeli(TestCase):
         self.meli_class = Meli(self.source, self.destiny, self.invoice, self.weight)
         result = self.meli_class.define_insurance(51, 2)
         self.assertTrue(result, 1.02)
+
+    def test_open_route_csv(self):
+
+        self.meli_class = Meli(self.source, self.destiny, self.invoice, self.weight)
+        self.meli_class.open_route_csv('tabela', 'rotas.csv')
+        self.assertEquals(self.meli_class.row_route, {'kg': 'flo', 'prazo': '3', 'seguro': '3', 'destino': 'brasilia', 'origem': 'florianopolis', 'fixa': '13'})
+
+    def test_open_kg_price_csv(self):
+
+        self.meli_class = Meli(self.source, self.destiny, self.invoice, self.weight)
+        self.meli_class.open_route_csv('tabela', 'rotas.csv')
+        self.meli_class.open_kg_price_csv('tabela', 'preco_por_kg.csv')
+        self.assertEquals(self.meli_class.row_kg_price, {'preco': '12', 'final': '10', 'inicial': '0', 'nome': 'flo'})
