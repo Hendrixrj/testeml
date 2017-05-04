@@ -11,7 +11,7 @@ Uma vez instalado executar o seguinte comando para criação do enviroment :
 
 virtualenv NOME_ENV
 
-Instalação de pacotes (uma vez instalado e criado o VirtualEnv específico) :
+Instalação de pacotes (uma vez instalado e criado o VirtualEnv específico e estando dentro dele) :
 
 pip install -r requirements.txt
 
